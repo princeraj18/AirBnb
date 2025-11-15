@@ -1,9 +1,10 @@
 import React from 'react'
+import Nav from '../components/Nav'
 
 const Home = () => {
   return (
     <div >
-     <h1 className='text-7xl'>Home</h1>   
+    <Nav/>  
         
     </div>
   )

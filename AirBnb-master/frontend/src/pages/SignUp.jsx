@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { authDataContext } from '../context/AuthContext';
 import axios from 'axios';
+import { userDataContext } from '../context/userContext';
 
 const SignUp = () => {
 
@@ -13,6 +14,7 @@ const SignUp = () => {
     let [name,setname]=useState("")
     let [email,setemail]=useState("")
     let [password,setpassword]=useState("")
+      let {userData,setUserData}=createContext(userDataContext)
 
     const handleSignUp = async(e)=>{
         try{
@@ -22,6 +24,8 @@ const SignUp = () => {
                 email,
                 password
             },{withCredentials:true});
+            setUserData(result.data)
+            navigate("/")
             console.log(result)
         }
         catch(error){

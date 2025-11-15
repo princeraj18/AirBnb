@@ -1,22 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { authDataContext } from '../context/AuthContext';
 import axios from 'axios';
+import { userDataContext } from '../context/userContext';
 
 const Login = () => {
     let navigate = useNavigate();
     let [email,setemail]=useState("");
     let [password,setpassword]=useState("")
+   
     let {serverurl}=useContext(authDataContext)
+     let {userData,setUserData}=createContext(userDataContext)
      const handleLogin = async(e)=>{
         try{
             e.preventDefault();
             let result= await axios.post(serverurl + "/api/auth/login" , {
-               
                 email,
                 password
             },{withCredentials:true});
+            setUserData(result.data)
+            navigate("/")
+            // console.log(result);
+            
             console.log(result)
         }
         catch(error){

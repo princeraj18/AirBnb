@@ -32,8 +32,8 @@ export const login = async (req,res)=> {
                 if(!user){
                     return res.status(400).json({message:"User not exist."})
                 }
-               let isMatch = await bcrypt.compare(password,user     .password)
-               if(!isMatch){
+               let isMatch = await bcrypt.compare(password,user.password)
+               if(!isMatch){   
                 return res.status(400).json({message:"incorrect password"})
                }
                 let token =await genToken(user._id)

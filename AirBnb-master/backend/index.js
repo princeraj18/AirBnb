@@ -4,6 +4,7 @@ import connectDb from "./config/db.js";
 import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors"
+import userRouter from "./routes/user.route.js";
 dotenv.config()
 let port = process.env.PORT ||3000;
 let app = express();
@@ -19,6 +20,7 @@ app.use(cors({
 
 
 app.use("/api/auth",authRouter)
+app.use("/api/user",userRouter)  
 app.listen(port,(req,res)=>{
     connectDb()
     console.log("server starts");
