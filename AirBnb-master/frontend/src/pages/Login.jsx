@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { authDataContext } from '../context/AuthContext';
+import { authDataContext } from '../context/AuthContext.jsx';
 import axios from 'axios';
-import { userDataContext } from '../context/userContext';
+import { userDataContext } from '../context/userContext.jsx';
+// import { UserContext } from './context/userContext.jsx'
+
 
 const Login = () => {
     let navigate = useNavigate();
@@ -11,7 +13,7 @@ const Login = () => {
     let [password,setpassword]=useState("")
    
     let {serverurl}=useContext(authDataContext)
-     let {userData,setUserData}=createContext(userDataContext)
+let {userData,setUserData}=useContext(userDataContext)
      const handleLogin = async(e)=>{
         try{
             e.preventDefault();

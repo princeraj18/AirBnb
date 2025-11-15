@@ -19,7 +19,8 @@ import { userDataContext } from '../context/userContext';
 
 const Nav = () => {
   let [showpopup,setshowpopup]=useState(false);
-    let {userData,setUserData}=createContext(userDataContext)
+   let {userData,setUserData}=useContext(userDataContext)
+
   let navigate = useNavigate();
   let {serverurl} = useContext(authDataContext);
 

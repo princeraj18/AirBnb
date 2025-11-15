@@ -2,16 +2,19 @@ import React, { Children, createContext, useContext, useEffect, useState } from 
 import { authDataContext } from './AuthContext'
 import axios from 'axios'
 export const userDataContext = createContext()
-const userContext = ({children}) => {
+ const UserContext = ({children}) => {
     let {serverurl}=useContext(authDataContext)
     let [userData,setUserData]= useState(null);
     const getCurrentUser = async ()=>{
         try {
-            let result = await axios.get(serverurl+"/api/user/currentuser",{withCredentials:true})
+            let result = await axios.get(serverurl+"/api/user/currentuser",{withCredentials:true, headers: {
+          "Content-Type": "application/json"
+        }})
             setUserData(result.data)
         } catch (error) {
-            setUserData(null)
+          
             console.log(error);
+              setUserData(null) 
             
             
         }
@@ -25,11 +28,11 @@ setUserData
     }
   return (
     <div>
-        <userDataContext.Provider value={value}>
-            {children }
-        </userDataContext.Provider>
+         <userDataContext.Provider value={value}>
+      {children}
+    </userDataContext.Provider>
     </div>
   )
 }
 
-export default userContext
+export default UserContext
