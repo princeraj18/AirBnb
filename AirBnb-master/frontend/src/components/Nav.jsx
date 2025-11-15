@@ -58,7 +58,7 @@ const Nav = () => {
             }}>
                 <span><GiHamburgerMenu className='w-[20px] h-[20px]' /> </span>
              { userData==null && <span> <CgProfile className='w-[23px] h-[23px]' />  </span>}
-              { userData!=null && <span className='w-[30px] h-[30px] bg-[#080808] text-white rounded-full flex items-center justify-center'>
+              { userData!=null && <span className='w-[34px] h-[34px] bg-[#080808] text-white rounded-full font-bold flex items-center justify-center'>
                 {userData?.name.slice(0,1)}
               </span>
        }     </button>
